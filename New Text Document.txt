@@ -1,0 +1,35 @@
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load a voice dataset (replace with your dataset)
+# You can obtain voice datasets from sources like Kaggle or UCI ML Repository
+# Example dataset: https://archive.ics.uci.edu/ml/datasets/voice
+voice_data = pd.read_csv("voice_dataset.csv")
+
+# Assuming the dataset has features like meanfreq, sd, etc., and a 'label' column with gender (e.g., 'male' or 'female')
+X = voice_data.drop("label", axis=1)
+y = voice_data["label"]
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train a Random Forest Classifier (you can experiment with other algorithms)
+classifier = RandomForestClassifier(n_estimators=100, random_state=42)
+classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = classifier.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
+
+# Predict gender for a new voice sample
+# Replace 'new_voice_sample' with the feature vector of the voice you want to classify
+new_voice_sample = np.array([feature1, feature2, ...])  # Include the same features used for training
+predicted_gender = classifier.predict([new_voice_sample])[0]
+
+print(f"Predicted gender: {predicted_gender}")
