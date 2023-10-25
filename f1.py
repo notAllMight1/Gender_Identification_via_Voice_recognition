@@ -63,17 +63,24 @@ def recognize_speech(filename):
         except sr.RequestError as e:
             print("Could not request results from Google Web Speech API; {0}".format(e))
 
-def classify_gender(name):
-    genderizer = Genderize()
-    gender_info = genderizer.get(name)
-    print(gender_info.get("name"))
-    if gender_info:
-        gender = gender_info['gender']
-        probability = gender_info['probability'] * 100
+def predict_speaker_name():
+    speaker_name = input("Enter the speaker's name: ")
+    return speaker_name
 
-        print(f"Predicted gender for {name}: {gender} (Probability: {probability:.2f}%)")
+def classify_gender(audio_data):
+    # Calculate the mean pitch of the recorded audio
+    mean_pitch = np.mean(audio_data)
+    print(f"Mean Pitch: {mean_pitch} Hz")
+
+    # Use the calculated pitch to classify the gender
+    if mean_pitch >= MALE_THRESHOLD:
+        gender = "Male"
+    elif mean_pitch <= FEMALE_THRESHOLD:
+        gender = "Female"
     else:
-        print(f"Predicted gender for {name}: Unknown or Neutral")
+        gender = "Neutral"
+
+    return gender
 
 def main():
     global stop_recording
@@ -90,9 +97,13 @@ def main():
             save_audio(audio_data, 'D:/misc/Programming/python projects/speech/audio.wav')
             recognize_speech("audio.wav")
 
-            # Get the name of the speaker (you can replace this with your logic)
-            speaker_name = input("Enter the speaker's name for gender classification: ")
-            classify_gender(speaker_name)
+            # Predict the speaker's name
+            speaker_name = predict_speaker_name()
+            print(f"Speaker's name: {speaker_name}")
+
+            # Call the classify_gender function with the recorded audio data
+            predicted_gender = classify_gender(audio_data)
+            print(f"Predicted gender based on voice: {predicted_gender}")
         else:
             print("No audio data available.")
 
@@ -101,3 +112,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

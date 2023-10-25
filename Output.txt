@@ -1,0 +1,20 @@
+PS C:\Users\Lenovo> & C:/Users/Lenovo/AppData/Local/Microsoft/WindowsApps/python3.10.exe "d:/misc/Programming/python projects/speech/Gender_Identification_via_Voice_recognition/f1.py"
+Press Enter to stop recording...Recording... (Press 'q' and Enter to stop)
+q
+Recording finished.
+Sorry, could not understand audio.
+Enter the speaker's name: sangram
+Speaker's name: sangram
+Mean Pitch: 190.00327727754237 Hz
+Predicted gender based on voice: Male
+
+
+PS C:\Users\Lenovo> & C:/Users/Lenovo/AppData/Local/Microsoft/WindowsApps/python3.10.exe "d:/misc/Programming/python projects/speech/Gender_Identification_via_Voice_recognition/f1.py"
+Press Enter to stop recording...Recording... (Press 'q' and Enter to stop)
+q
+Recording finished.
+Sorry, could not understand audio.
+Enter the speaker's name: rita
+Speaker's name: rita
+Mean Pitch: 127.76511630827974 Hz
+Predicted gender based on voice: Female
