@@ -9,10 +9,10 @@ from genderize import Genderize
 AUDIO_FORMAT = pyaudio.paInt16
 SAMPLE_RATE = 44100
 CHUNK_SIZE = 1024
-MALE_THRESHOLD = 120  # Adjusted threshold
-FEMALE_THRESHOLD = 220  # Adjusted threshold
-NEUTRAL_ZONE_LOWER = 150
-NEUTRAL_ZONE_UPPER = 200
+MALE_THRESHOLD = 135  # Adjusted threshold
+FEMALE_THRESHOLD = 250  # Adjusted threshold
+NEUTRAL_ZONE_LOWER = 135
+NEUTRAL_ZONE_UPPER = 185
 
 # Global variable to store audio data
 audio_data = None
