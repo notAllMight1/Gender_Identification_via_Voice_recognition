@@ -1,0 +1,98 @@
+Import necessary libraries:
+
+import speech_recognition as sr
+import pyaudio
+import numpy as np
+import wave
+import threading
+from genderize import Genderize
+
+speech_recognition is used for speech recognition (Google Web Speech API is employed).
+pyaudio is used for audio recording and playback.
+numpy is used for numerical operations on audio data.
+wave is used for saving audio data to a WAV file.
+threading is used to run audio recording in a separate thread.
+genderize is used for predicting the speaker's gender based on their name. However, this library is not used in the code.
+
+
+
+Define constants:
+
+AUDIO_FORMAT = pyaudio.paInt16
+SAMPLE_RATE = 44100
+CHUNK_SIZE = 1024
+MALE_THRESHOLD = 135
+FEMALE_THRESHOLD = 250
+NEUTRAL_ZONE_LOWER = 135
+NEUTRAL_ZONE_UPPER = 185
+
+AUDIO_FORMAT specifies the audio format for recording (16-bit PCM).
+SAMPLE_RATE sets the audio sample rate (samples per second).
+CHUNK_SIZE is the number of audio frames per buffer.
+MALE_THRESHOLD and FEMALE_THRESHOLD are thresholds used to classify the gender based on pitch.
+NEUTRAL_ZONE_LOWER and NEUTRAL_ZONE_UPPER define a neutral zone within which the gender classification is considered "Neutral."
+
+
+
+Define global variables:
+
+audio_data = None  # To store audio data
+stop_recording = False  # To signal when to stop recording
+audio_data will hold the recorded audio.
+stop_recording is a flag to signal when to stop recording.
+
+
+
+Define the record_audio function:
+
+def record_audio():
+    # ...
+This function initializes a PyAudio object, opens a stream to capture audio from the microphone, and records audio data in chunks. The recording continues until the stop_recording flag is set to True.
+
+
+
+Define the save_audio function:
+
+def save_audio(audio_data, filename):
+    # ...
+This function saves the recorded audio data to a WAV file.
+
+
+
+Define the recognize_speech function:
+
+def recognize_speech(filename):
+    # ...
+This function uses the speech_recognition library to recognize speech from the given WAV file and prints the recognized text.
+
+
+
+Define the predict_speaker_name function:
+
+def predict_speaker_name():
+    # ...
+This function takes user input for the speaker's name and returns it.
+
+
+
+Define the classify_gender function:
+
+def classify_gender(audio_data):
+    # ...
+This function calculates the mean pitch of the recorded audio data and classifies the speaker's gender based on the thresholds defined earlier.
+
+
+
+Define the main function:
+
+def main():
+    # ...
+In the main function, audio recording is started in a separate thread, and the user is prompted to press Enter to stop recording. Then, audio recording is stopped, the recorded audio is saved, speech is recognized, the speaker's name is predicted, and the speaker's gender is classified.
+
+
+
+Run the main function if this script is executed directly:
+
+if __name__ == "__main__":
+    main()
+This script, when executed, allows you to record audio, recognize speech in the recorded audio, predict the speaker's name, and classify the speaker's gender based on the audio's pitch. Note that the accuracy of gender classification based on pitch may vary and might not be very reliable.
